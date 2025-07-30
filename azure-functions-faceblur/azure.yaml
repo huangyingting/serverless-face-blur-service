@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+name: serverless-face-blur
+metadata:
+  template: serverless-face-blur-service@0.0.1-beta
+services:
+  faceblur:
+    project: ./src
+    language: js
+    host: function
+    dist: dist
+infra:
+  provider: bicep
+  path: infra
+  parameters:
+    principalId: ${AZURE_PRINCIPAL_ID=""}
+pipeline:
+  provider: github
